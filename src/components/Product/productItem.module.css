@@ -1,0 +1,17 @@
+.list-item {
+    list-style-type: none;
+    font-weight: 600;
+}
+
+.list-desc {
+    font-weight: 400;
+}
+
+#qtyId {
+    width: 70px;
+    height: 30px;
+    box-shadow: none;
+    float: right;
+    text-align: center;
+    border-radius: 0px;
+}
