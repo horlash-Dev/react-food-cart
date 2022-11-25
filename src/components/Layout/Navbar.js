@@ -1,6 +1,6 @@
 import HeaderCart from "../Cart/HeaderCart";
 
-const Navbar = () => {
+const Navbar = (props) => {
   return (
     <>
     <nav
@@ -23,7 +23,7 @@ const Navbar = () => {
           Menu
           <i className="bi-list"></i>
         </button>
-        <HeaderCart />
+        <HeaderCart onClick={props.setCart} />
       </div>
     </nav>
     </>

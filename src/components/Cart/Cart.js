@@ -1,10 +1,10 @@
 import Modal from "../UI/Modal";
 
 
-const Cart = () => {
+const Cart = (props) => {
 
     return (
-        <Modal>
+        <Modal removeCart={props.removeCartActive} >
             <div className="row align-items-center m-2 p-3 rounded-2 bg-white shadow-lg">
             <div className="col-lg-4">
                 <p>book</p>
