@@ -9,10 +9,23 @@ import cartContext from "./context/cartContext";
 
 const setCartAction = (state, action) => {
 if (action.type === 'ADD_CART') {
-   const add_cart = state.cartItems.concat(action.item);
-   console.log(add_cart);
+  // console.log(add_cart);
     const total = state.totalAmt + (action.item.price * action.item.qtyAmt);
-    console.log(total);
+    //console.log(total);
+  const getExistingItem = state.cartItems.findIndex(item => item.id === action.item.id)
+  const itemToUpdate = state.cartItems[getExistingItem];
+  console.log( itemToUpdate);
+  let add_cart;
+  if (itemToUpdate) {
+    const updatedItem = {
+     ...itemToUpdate, qtyAmt: itemToUpdate.qtyAmt + action.amount
+    }
+   add_cart = [...state.cartItems]
+   add_cart[getExistingItem] = updatedItem
+  } else {
+     add_cart = state.cartItems.concat(action.item);
+  }
+
     return {
       cartItems: add_cart,
       totalAmt: total
