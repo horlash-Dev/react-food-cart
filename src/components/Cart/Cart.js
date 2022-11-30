@@ -6,10 +6,10 @@ const Cart = (props) => {
     const ctxCart = useContext(cartContext)
     console.log(ctxCart.cartItems);
     const removeCartItem = id => {
-
+        ctxCart.removeItem(id)
     }
     const addCartItem = item => {
-        ctxCart.addItem({...item,amount:1})
+        ctxCart.addItem({...item, qtyAmt: 1})
     }
     const cartAmt = `$${ctxCart.totalAmt.toFixed(2)}`
     return (
@@ -24,7 +24,7 @@ const Cart = (props) => {
             <b className="">
             $&nbsp;{item.price}
             </b>
-            <p><span className="btn btn-secondary btn-sm py-0 px-2" onClick={addCartItem.bind(null,item)}>+</span>&nbsp;&nbsp;<span className="btn btn-secondary btn-sm py-0 px-2" onClick={removeCartItem}>-</span> </p>
+            <p><span className="btn btn-secondary btn-sm py-0 px-2" onClick={addCartItem.bind(null,item)}>+</span>&nbsp;&nbsp;<span className="btn btn-secondary btn-sm py-0 px-2" onClick={removeCartItem.bind(null,item.id)}>-</span> </p>
             </div>
             </div>
             ) )}

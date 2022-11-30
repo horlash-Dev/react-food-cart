@@ -9,17 +9,16 @@ import cartContext from "./context/cartContext";
 
 const setCartAction = (state, action) => {
 if (action.type === 'ADD_CART') {
-  // console.log(add_cart);
-    const total = state.totalAmt + (action.item.price * action.item.qtyAmt);
-    //console.log(total);
+  const total = state.totalAmt + (action.item.price * action.item.qtyAmt);
   const getExistingItem = state.cartItems.findIndex(item => item.id === action.item.id)
   const itemToUpdate = state.cartItems[getExistingItem];
-  console.log( itemToUpdate);
   let add_cart;
   if (itemToUpdate) {
+    let no = action.item.qtyAmt + itemToUpdate.qtyAmt;
     const updatedItem = {
-     ...itemToUpdate, qtyAmt: itemToUpdate.qtyAmt + action.amount
+     ...itemToUpdate, qtyAmt: no
     }
+//    console.log(updatedItem);
    add_cart = [...state.cartItems]
    add_cart[getExistingItem] = updatedItem
   } else {
@@ -31,9 +30,31 @@ if (action.type === 'ADD_CART') {
       totalAmt: total
     }
 }
+
+if (action.type === 'REMOVE_CART_ITEM') {
+  const getExistingItem = state.cartItems.findIndex(item => item.id === action.id)
+  const itemToRemove = state.cartItems[getExistingItem];
+  const total = state.totalAmt  - itemToRemove.price;
+  let rem_cart;
+  if (itemToRemove.qtyAmt === 1) {
+    rem_cart = state.cartItems.filter(item => item.id !== action.id)
+  } else {
+    const updatedItem = {
+      ...itemToRemove, qtyAmt: (itemToRemove.qtyAmt - 1)
+     }
+    rem_cart = [...state.cartItems]
+    rem_cart[getExistingItem] = updatedItem
+
+  }
+
+    return {
+      cartItems: rem_cart,
+      totalAmt: total
+    }
+}
 return {
   cartItems: [],
-  totalAmt: null
+  totalAmt: 0
 }
 };
 
@@ -53,10 +74,10 @@ const addItemCart = product => {
 }
 
 const removeItemCart = id =>{
-  
+  dispatchCartAction({type: 'REMOVE_CART_ITEM', id: id})
 }
 
-const [item, dispatchCartAction] = useReducer(setCartAction,{cartItems: [], totalAmt: null})
+const [item, dispatchCartAction] = useReducer(setCartAction,{cartItems: [], totalAmt: 0})
 
 const providerItem = {
   cartItems: item.cartItems,
