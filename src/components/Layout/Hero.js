@@ -12,8 +12,8 @@ return (
             <h1 className={bannerStyle.h1}>
               FOOD IS READY
             </h1>
-            <p className="lead fw-normal text-muted mb-5">
-              Launch your mobile app landing page faster with this free.
+            <p className="lead fw-normal mb-5 text-white">
+              React food app ('built with cart module, context-api, react hooks')
             </p>
           </div>
         </div>
