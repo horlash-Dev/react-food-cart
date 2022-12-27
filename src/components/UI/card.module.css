@@ -1,0 +1,7 @@
+.bgImg {
+    background-image: url('../../assets/banner/banner2.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 12% 0%;
+}
+

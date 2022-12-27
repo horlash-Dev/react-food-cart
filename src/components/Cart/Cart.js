@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import cartContext from "../../context/cartContext";
 import Modal from "../UI/Modal";
-
+//  CART MODAL TO DISPLAY PRODUCT
 const Cart = (props) => {
     const ctxCart = useContext(cartContext)
-    console.log(ctxCart.cartItems);
+   // console.log(ctxCart.cartItems);
     const removeCartItem = id => {
         ctxCart.removeItem(id)
     }
